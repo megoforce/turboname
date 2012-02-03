@@ -16,8 +16,7 @@ def newname
   end
   return searchtld(line)
 end
-puts "HELLO";
-100.times do
+100999032982389.times do
   randomname=newname()
   result=domainsearch(randomname)
   if result==true
