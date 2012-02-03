@@ -3,12 +3,7 @@ require 'uri'
 puts posibilidades(dominio)
 
 def posibilities(dominio)
-  if (resultado =~ URI::regexp).nil?
-      puts 'wena'
-  else
-    puts 'shit'
-  end
-  return resultado
+  validates_format_of :domain_name, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 end
 
 countrytld => [
