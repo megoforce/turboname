@@ -1,12 +1,6 @@
-require 'uri'
+dominio = 'wena'
 
-puts posibilidades(dominio)
-
-def posibilities(dominio)
-  validates_format_of :domain_name, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
-end
-
-countrytld => [
+countrytld = [
         'ac',
         'ad','ae','af','ag',
         'ai','al','am','an',
@@ -73,7 +67,7 @@ countrytld => [
         'zm','zw',
 ]
     
-generictld => [
+generictld = [
             'aero',
             'biz',
             'cat',
@@ -97,6 +91,18 @@ generictld => [
             'tel',
             'geo',
 ]
+
+generictld.each do |tld|
+puts 'genericos'
+puts dominio+'.'+tld
+end
+
+countrytld.each do |tl|
+puts 'por pais'
+puts dominio.+'.'+tl
+end
+
+
 
    
  
