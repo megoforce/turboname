@@ -7,9 +7,10 @@ def domainsearch(name)
     false
   end
 end
-`wc -l dictionary.txt`
 def newname
-  line = File.readlines("dictionary.txt")[rand(36000)-1].gsub("\n","")
+  vowels=["a","e","i","o","u"]
+  line = File.readlines("dictionary.txt")[rand(349899)-1].gsub("\n","")
+  line=line.gsub(vowels.choice,vowels.choice) 
   return line+".com"
 end
 puts "HELLO";
