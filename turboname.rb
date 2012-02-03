@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'tld.rb'
 `touch names.txt`
 def domainsearch(name)
   if (`whois #{name}`).include?("No match for") 
@@ -13,7 +14,7 @@ def newname
   2.times do
     line=line.gsub(vowels.choice,vowels.choice) if rand(1)==1
   end
-  return line+".com"
+  return searchtld(line)
 end
 puts "HELLO";
 100.times do
