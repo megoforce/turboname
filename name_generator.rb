@@ -1,6 +1,4 @@
 def generate_name
-
-  
   dicc_begin = Array.new
   dicc_middle = Array.new
   dicc_end = Array.new
@@ -25,18 +23,31 @@ def generate_name
     dicc_end[i] = line.gsub("\n","")
     i = i + 1
   end
-  
-  length = rand(1)+2
+
+  length = rand(2)+2
   name = ""
   for i in 1..length
-    if (i == 1 && rand(99)<30)
-      name += dicc_begin[rand(dicc_begin.length-1)]
-    else
-      name += dicc_middle[rand(dicc_middle.length-1)]
+    #first pseudosyllable
+    if (i == 1)
+      if(rand(99)<30) #30% use begin dicctionary
+        name += dicc_begin[rand(dicc_begin.length-1)]
+      else
+        name += dicc_middle[rand(dicc_middle.length-1)]
+      end
     end
     
+    #middle pseudosyllable    
     name += dicc_middle[rand(dicc_middle.length-1)] if (i > 1 && i < length)
-    name += dicc_end[rand(dicc_end.length-1)] if (i == length && rand(99)<80)
+    
+    #end pseudosyllable
+    if (i == length)
+      if (rand(99)<80) #80% use end dicctionary
+        name += dicc_end[rand(dicc_end.length-1)]
+      else
+        name += dicc_middle[rand(dicc_middle.length-1)]
+      end
+    end
+    
   end
   
   return name
