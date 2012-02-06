@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'tld.rb'
+require 'name_generator.rb'
 `touch names.txt`
 def domainsearch(name)
   if (`whois #{name}`).include?("No match for") 
@@ -10,7 +11,11 @@ def domainsearch(name)
 end
 def newname
   vowels=["a","e","i","o","u"]
-  line = File.readlines("dictionary.txt")[rand(435000)-1].gsub("\n","")
+  if rand(1)==1
+    line = File.readlines("dictionary.txt")[rand(435000)-1].gsub("\n","")
+  else
+    line = generate_name()
+  end
   2.times do
     line=line.gsub(vowels.choice,vowels.choice) if rand(1)==1
   end
