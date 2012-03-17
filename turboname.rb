@@ -19,12 +19,10 @@ def newname
 end
 100999032982389.times do
   randomname=newname()
-  
-  if randomname.length<10
-    puts randomname
+    if randomname.length<10
     result=domainsearch(randomname)
     if result==true
-      `echo "#{randomname}" >> names.txt`
+      puts randomname
     end
   end
 end
