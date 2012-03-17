@@ -12,7 +12,7 @@ end
 def newname
   vowels=["a","e","i","o","u"]
   line = File.readlines("dictionary.txt")[rand(435000)-1].gsub("\n","")
-  rand(10).times do
+  rand(20).times do
     line=line.gsub(vowels.choice,vowels.choice)
   end
   return searchtld(line)
