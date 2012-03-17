@@ -23,6 +23,7 @@ end
     result=domainsearch(randomname)
     if result==true
       puts randomname
+      `echo "#{randomname}" >> names.txt`
     end
   end
 end
