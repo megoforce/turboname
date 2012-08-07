@@ -1,9 +1,4 @@
- ________  _____  ___  ____  _  _____   __  _______
-/_  __/ / / / _ \/ _ )/ __ \/ |/ / _ | /  |/  / __/
- / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  
-/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  
-
-The quickest, stranger way to find a domain name.                                                
+TURBONAME                                             
 ===================================================
 
 Do you have a project that needs a short domain name, while maintaining some sense of redability?
@@ -21,5 +16,4 @@ Requirements
 
 Instructions
 ============
-Open a terminal window in the directory you extracted turboname and run:
-    ruby turboname.rb
+Open a terminal window in the directory you extracted turboname and type: `ruby turboname.rb`
