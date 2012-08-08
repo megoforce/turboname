@@ -118,7 +118,7 @@ def searchtld(word)
           'sn','so','sr','st',
           'su','sv','sy','sz',
           'tc','td','tf','tg',
-          'th','tj','tk','tl',
+          'tj','tk','tl',
           'tm','tn','to','tp',
           'tr','tt','tv','tw',
           'tz','ua','ug','uk',
