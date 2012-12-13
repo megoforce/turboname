@@ -1,4 +1,5 @@
-require 'open-uri'
+# Turboname
+# finding domain names at lightspeed
 
 module Turboname
   class Domain
@@ -17,9 +18,11 @@ module Turboname
   
     def available?
       puts "checking if #{name} is available"
-      result = `whois #{name}`
-      no_match = ['No match for', 'Not Registered', 'Not found', 'Domain Status: Available', 'Incorrect domain name:', 'no match', 'No entries found', 'No such domain']
-      no_match.map{ |m| result.downcase.include? m.downcase }.include?(true) and not result.include?('nodename nor servname provided, or not known')
+      result = `whois #{name}`.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
+      result = result.downcase! rescue result
+      # all the no_match es must be in downcase
+      no_match = ['no match for', 'not registered', 'not found', 'nomain status: available', 'incorrect domain name', 'no match', 'no entries found', 'no such domain']
+      no_match.map{ |m| result.include?(m) rescue false }.include?(true) and not result.include?('nodename nor servname provided, or not known')
     end
   
     def tldize! what
@@ -66,15 +69,10 @@ puts '/_  __/ / / / _ \/ _ )/ __ \/ |/ / _ | /  |/  / __/'
 puts ' / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  '
 puts '/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  '
 puts "    finding a domain name for you since #{1800 + rand(100)}"
-                                            
 
 dictionary = Turboname::Random.new
 
 100999032982389.times do
   name = Turboname::Domain.new from: dictionary
-  if name.length < 15
-    if name.available?
-      name.save
-    end
-  end
+  name.save if name.length < 15 and name.available?
 end
