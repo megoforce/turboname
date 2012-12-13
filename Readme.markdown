@@ -17,3 +17,5 @@ Requirements
 Instructions
 ============
 Open a terminal window in the directory you extracted turboname and type: `ruby turboname.rb`
+
+Based on [Megoforce](https://github.com/megoforce/turboname)'s Turboname
