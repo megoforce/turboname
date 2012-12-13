@@ -12,17 +12,17 @@ module Turboname
     end
   
     def save
-      puts "Domain found: " + name
       `echo "#{name}" >> names.txt`
     end 
   
     def available?
-      puts "checking if #{name} is available"
+      print name
       result = `whois #{name}`.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
       result = result.downcase! rescue result
       # all the no_match es must be in downcase
       no_match = ['no match for', 'not registered', 'not found', 'nomain status: available', 'incorrect domain name', 'no match', 'no entries found', 'no such domain']
-      no_match.map{ |m| result.include?(m) rescue false }.include?(true) and not result.include?('nodename nor servname provided, or not known')
+      available = no_match.map{ |m| result.include?(m) rescue false }.include?(true) and not result.include?('nodename nor servname provided, or not known')
+      puts "#{' '*(25 - name.length)}#{available ? 'IS' : 'is not'} available"
     end
   
     def tldize! what
