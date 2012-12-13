@@ -11,33 +11,33 @@ module Turboname
       self.name = opts[:from].is_a?(Dictionary) ? opts[:from].get : opts[:from] if opts[:from]
     end
   
-    def save
-      `echo "#{name}" >> names.txt`
-    end 
+    # let's remove the tld at the end of the domain. eljojo -> eljo.jo | asdfk -> asdfk.jo
+    def with_tld tld
+      @name[-tld.length..-1] == tld ? @name[0..-tld.length-1] + ".#{tld}" : "#{@name}.#{tld}"
+    end
   
-    def available?
-      print name
-      result = `whois #{name}`.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
+    def save tld = 'com'
+      `echo "#{with_tld(tld)}" >> names.txt`
+    end
+  
+    def available? tld = 'com'
+      name_with_tld = with_tld(tld)
+      print name_with_tld
+      result = `whois #{name_with_tld}`.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
       result = result.downcase! rescue result
       # all the no_match es must be in downcase
       no_match = ['no match for', 'not registered', 'not found', 'domain status: available', 'incorrect domain name', 'no match', 'no entries found', 'no such domain', 'not have an entry in our database']
       available = no_match.map{ |m| result.include?(m) rescue false }.include?(true) and not result.include?('nodename nor servname provided, or not known')
-      puts "#{' '*(25 - name.length)}#{available ? 'IS' : 'is not'} available"
+      puts "#{' '*(25 - name_with_tld.length)}#{available ? 'IS' : 'is not'} available"
+      available
     end
   
-    def tldize! what
-      last_letters = what[-2..-1]
-      if CountryTLDs.include?(last_letters)
-        what[0..-3] + "." + last_letters
-      else
-        "#{what}.com"
-      end
-    end
-  
-    def name= new_name
-      @name = tldize! new_name
+    def tldize
+      last_letters = self.name[-2..-1]
+      last_letters if CountryTLDs.include?(last_letters)
     end
     
+    # this will not include the tld
     def to_s
       @name
     end
@@ -75,4 +75,6 @@ dictionary = Turboname::Random.new
 100999032982389.times do
   name = Turboname::Domain.new from: dictionary
   name.save if name.length < 15 and name.available?
+  tld = name.tldize
+  name.save(tld) if tld and name.length < 15 and name.available? tld
 end
