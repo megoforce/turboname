@@ -26,7 +26,7 @@ module Turboname
       name_with_tld = with_tld(tld)
       print name_with_tld
       domain = Whois.whois(name_with_tld)
-      available = domain.available?
+      available = domain.available? rescue false
       puts "#{' '*(25 - name_with_tld.length)}#{available ? 'IS' : 'is not'} available"
       available
     end
