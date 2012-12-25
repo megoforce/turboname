@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler'
+Bundler.require
 require 'goliath'
 require 'goliath/websocket'
 require 'goliath/rack/templates'
 require './turboname.rb'
-require 'pp'
 
 module Goliath
   module Plugin
