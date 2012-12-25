@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TURBONAME</title>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        if (!("WebSocket" in window)) {
+          $("h1").text("Sorry, WebSockets unavailable.");
+          return;
+        }
+
+        var ws = new WebSocket("ws://"+document.location.hostname+":"+document.location.port+"/ws");
+        ws.onmessage = function(evt) {
+          $("h1").text(evt.data)
+          document.title = evt.data
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <h1>connecting to turboname...</h1>
+  </body>
+</html>

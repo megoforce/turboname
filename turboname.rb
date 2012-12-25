@@ -20,15 +20,16 @@ module Turboname
       `echo "#{with_tld(tld)}" >> names.txt`
     end
   
-    def available? tld = 'com'
+    def available? tld = nil
+      tld = 'com' if tld.nil?
       name_with_tld = with_tld(tld)
-      print name_with_tld
+      # print name_with_tld
       result = `whois #{name_with_tld}`.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
       result = result.downcase! rescue result
       # all the no_match es must be in downcase
       no_match = ['no match for', 'not registered', 'not found', 'domain status: available', 'incorrect domain name', 'no match', 'no entries found', 'no such domain', 'not have an entry in our database']
       available = no_match.map{ |m| result.include?(m) rescue false }.include?(true) and not result.include?('nodename nor servname provided, or not known')
-      puts "#{' '*(25 - name_with_tld.length)}#{available ? 'IS' : 'is not'} available"
+      # puts "#{' '*(25 - name_with_tld.length)}#{available ? 'IS' : 'is not'} available"
       available
     end
   
@@ -70,11 +71,11 @@ puts ' / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  '
 puts '/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  '
 puts "    finding a domain name for you since #{1800 + rand(100)}"
 
-dictionary = Turboname::Random.new
-
-100999032982389.times do
-  name = Turboname::Domain.new from: dictionary
-  name.save if name.length < 15 and name.available?
-  tld = name.tldize
-  name.save(tld) if tld and name.length < 15 and name.available? tld
-end
+# dictionary = Turboname::Random.new
+# 
+# 100999032982389.times do
+#   name = Turboname::Domain.new from: dictionary
+#   name.save if name.length < 15 and name.available?
+#   tld = name.tldize
+#   name.save(tld) if tld and name.length < 15 and name.available? tld
+# end
