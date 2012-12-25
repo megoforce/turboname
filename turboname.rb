@@ -1,5 +1,6 @@
 # Turboname
 # finding domain names at lightspeed
+require 'whois'
 
 module Turboname
   class Domain
@@ -23,13 +24,10 @@ module Turboname
     def available? tld = nil
       tld = 'com' if tld.nil?
       name_with_tld = with_tld(tld)
-      # print name_with_tld
-      result = `whois #{name_with_tld}`.encode(Encoding::UTF_8, :invalid => :replace, :undef => :replace, :replace => '')
-      result = result.downcase! rescue result
-      # all the no_match es must be in downcase
-      no_match = ['no match for', 'not registered', 'not found', 'domain status: available', 'incorrect domain name', 'no match', 'no entries found', 'no such domain', 'not have an entry in our database']
-      available = no_match.map{ |m| result.include?(m) rescue false }.include?(true) and not result.include?('nodename nor servname provided, or not known')
-      # puts "#{' '*(25 - name_with_tld.length)}#{available ? 'IS' : 'is not'} available"
+      print name_with_tld
+      domain = Whois.whois(name_with_tld)
+      available = domain.available?
+      puts "#{' '*(25 - name_with_tld.length)}#{available ? 'IS' : 'is not'} available"
       available
     end
   
