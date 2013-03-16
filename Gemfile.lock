@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    turboname (0.0.1)
+    turboname (0.0.2)
       whois (>= 2.0.0)
 
 GEM

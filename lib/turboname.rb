@@ -60,10 +60,10 @@ module Turboname
   
   class Random < Dictionary
     def get
-      vowels=["a","e","i","o","u"]
+      vowels = ["a","e","i","o","u"]
       line = File.readlines(File.join(Turboname::path, 'dictionary.txt'))[rand(435000)-1].gsub("\n","")
       rand(20).times do
-        line=line.gsub(vowels.sample,vowels.sample)
+        line = line.gsub(vowels.shuffle.first, vowels.shuffle.first)
       end
       line
     end

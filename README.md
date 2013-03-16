@@ -7,7 +7,26 @@ While most of the results aren't that exiting you can find a gem watching the re
 
 Based on [Megoforce](https://github.com/megoforce/turboname)'s Turboname
 
-## Installation
+
+## From the command line
+#### Installation
+Install the gem, from your terminal.
+
+    $ gem install turboname
+    
+####  Usage
+fire up your terminal and run:
+
+    $ turboname
+    
+
+#### You might also need
+    - Precious time
+    - Frustration tolerance.
+    - Water and Food
+    - Maybe a blanket.
+
+## From your Ruby app
 
 Add this line to your application's Gemfile:
 
@@ -16,23 +35,20 @@ Add this line to your application's Gemfile:
 And then execute:
 
     $ bundle
+    
+Now you should be able to run something like:
 
-Or install it yourself as:
+```ruby
+    require 'turboname'
+    dictionary = Turboname::Random.new
 
-    $ gem install turboname
-
-## Usage
-
-fire up your terminal and run:
-
-    $ turboname
-
-You might also need:
-
-- Precious time
-- Frustration tolerance.
-- Water and Food
-- Maybe a blanket.
+    100999032982389.times do
+      name = Turboname::Domain.new(:from => dictionary)
+      name.save if name.length < 15 and name.available?
+      tld = name.tldize
+      name.save(tld) if tld and name.length < 15 and name.available?(tld)
+    end
+```
 
 ## Contributing
 
