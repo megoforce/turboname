@@ -8,7 +8,7 @@ While most of the results aren't that exiting you can find a gem watching the re
 Based on [Megoforce](https://github.com/megoforce/turboname)'s Turboname
 
 
-## From the command line
+## Usage from the command line
 #### Installation
 fire up your terminal and run:
 
@@ -41,6 +41,26 @@ corcar.se                IS available
 
 All the results are saved to a file called ```names.txt```.
 To close the app just press ```ctrl + c```
+
+#### Domainify specific words
+
+You can also give it some words to domainify. (Thanks [@jacobaweiss](https://github.com/eljojo/turboname/pull/1)!)
+
+    $ turboname peanutbutter andjelly
+
+and get back 
+
+```
+ ________  _____  ___  ____  _  _____   __  _______
+/_  __/ / / / _ \/ _ )/ __ \/ |/ / _ | /  |/  / __/
+ / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  
+/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  
+    finding a domain name for you since 1825
+peanutbutter.com         is not available
+peanutbutt.er            is not available
+andjelly.com             is not available
+andjel.ly                IS available
+```
 
 #### You might also need
 - Precious time
