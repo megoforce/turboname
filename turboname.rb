@@ -73,11 +73,11 @@ puts ' / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  '
 puts '/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  '
 puts "    finding a domain name for you since #{1800 + rand(100)}"
 
-# dictionary = Turboname::Random.new
-# 
-# 100999032982389.times do
-#   name = Turboname::Domain.new from: dictionary
-#   name.save if name.length < 15 and name.available?
-#   tld = name.tldize
-#   name.save(tld) if tld and name.length < 15 and name.available? tld
-# end
+dictionary = Turboname::Random.new
+
+100999032982389.times do
+  name = Turboname::Domain.new from: dictionary
+  name.save if name.length < 15 and name.available?
+  tld = name.tldize
+  name.save(tld) if tld and name.length < 15 and name.available? tld
+end
