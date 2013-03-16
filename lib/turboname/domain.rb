@@ -5,7 +5,7 @@ module Turboname
     attr_accessor :name
   
     def initialize opts = {}
-      self.name = opts[:from].is_a?(Dictionary) ? opts[:from].get : opts[:from] if opts[:from]
+      self.name = opts[:from].respond_to?(:get) ? opts[:from].get : opts[:from] if opts[:from]
     end
   
     # let's remove the tld at the end of the domain. eljojo -> eljo.jo | asdfk -> asdfk.jo
