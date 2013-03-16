@@ -1,4 +1,4 @@
-# Turboname
+# Turboname [![Build Status](https://travis-ci.org/eljojo/turboname.png?branch=master)](https://travis-ci.org/eljojo/turboname)
 
 Do you have a project that needs a short domain name, while maintaining some sense of redability?
 This little tool will choose some random word in spanish or english, mix syllables, vocals until it finds a .com domain name available for that strange, made up-word.
