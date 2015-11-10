@@ -1,11 +1,9 @@
-# Turboname [![Build Status](https://travis-ci.org/eljojo/turboname.png?branch=master)](https://travis-ci.org/eljojo/turboname)
+# Turboname
 
 Do you have a project that needs a short domain name, while maintaining some sense of redability?
 This little tool will choose some random word in spanish or english, mix syllables, vocals until it finds a .com domain name available for that strange, made up-word.
 
 While most of the results aren't that exiting you can find a gem watching the results of the script finding domain names.
-
-Based on [Megoforce](https://github.com/megoforce/turboname)'s Turboname
 
 
 ## Usage from the command line
@@ -41,26 +39,6 @@ corcar.se                IS available
 
 All the results are saved to a file called ```names.txt```.
 To close the app just press ```ctrl + c```
-
-#### Domainify specific words
-
-You can also give it some words to domainify. (Thanks [@jacobaweiss](https://github.com/eljojo/turboname/pull/1)!)
-
-    $ turboname peanutbutter andjelly
-
-and get back 
-
-```
- ________  _____  ___  ____  _  _____   __  _______
-/_  __/ / / / _ \/ _ )/ __ \/ |/ / _ | /  |/  / __/
- / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  
-/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  
-    finding a domain name for you since 1825
-peanutbutter.com         is not available
-peanutbutt.er            is not available
-andjelly.com             is not available
-andjel.ly                IS available
-```
 
 #### You might also need
 - Precious time

@@ -11,20 +11,18 @@ puts ' / / / /_/ / , _/ _  / /_/ /    / __ |/ /|_/ / _/  '
 puts '/_/  \____/_/|_/____/\____/_/|_/_/ |_/_/  /_/___/  '
 puts "    finding a domain name for you since #{1800 + rand(100)}"
 
-if ARGV.length > 0
-  ARGV.each do |arg|
-    name = Turboname::Domain.new(:from => arg.to_s)
+min_domain_length=15
+
+if ARGV.length > 0 && ARGV[0].to_i && ARGV[0].to_i>2
+  min_domain_length=ARGV[0].to_i
+end
+dictionary = Turboname::Random.new
+
+100999032982389.times do
+  name = Turboname::Domain.new(:from => dictionary)
+  if(name.length<=min_domain_length)
     name.save if name.available?
     tld = name.tldize
     name.save(tld) if tld and name.available?(tld)
-  end
-else
-  dictionary = Turboname::Random.new
-
-  100999032982389.times do
-    name = Turboname::Domain.new(:from => dictionary)
-    name.save if name.length < 15 and name.available?
-    tld = name.tldize
-    name.save(tld) if tld and name.length < 15 and name.available?(tld)
   end
 end

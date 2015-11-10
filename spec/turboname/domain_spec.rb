@@ -38,8 +38,8 @@ describe Turboname::Domain do
       domain.available?.should == true
     end
     it "tells if a domain is NOT available" do
-      domain = Turboname::Domain.new(:from => 'turbona')
-      domain.available?('me').should == false
+      domain = Turboname::Domain.new(:from => 'google')
+      domain.available?('com').should == false
     end
   end
 end
