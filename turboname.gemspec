@@ -6,11 +6,11 @@ require 'turboname/version'
 Gem::Specification.new do |spec|
   spec.name          = "turboname"
   spec.version       = Turboname::VERSION
-  spec.authors       = ["José Tomás Albornoz"]
-  spec.email         = ["jojo@eljojo.net"]
-  spec.description   = %q{finding domain names at lightspeed}
+  spec.authors       = ["explodi","José Tomás Albornoz"]
+  spec.email         = ["cristian@mego.cl"]
+  spec.description   = %q{find the name for your next unicorn}
   spec.summary       = %q{Simple gem that searches for random domain names and tells you if they're available}
-  spec.homepage      = "https://github.com/eljojo/turboname"
+  spec.homepage      = "https://github.com/megoforce/turboname"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
